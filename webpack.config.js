@@ -8,5 +8,20 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'), // 出力フォルダ
     filename: 'main.js', // 出力ファイル名
   },
+  module: {
+    rules: [
+      {
+        test: /\.css$/, // .js ファイルを対象
+        use: [
+          {
+            loader: 'style-loader', // CSS を <style> タグに挿入
+          },
+          {
+            loader: 'css-loader', // CSS をバンドル
+          },
+        ],
+      },
+    ],
+  },
   devtool: 'source-map', // ソースマップを出力（デバッグ用）
 };
