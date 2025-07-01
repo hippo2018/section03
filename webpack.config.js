@@ -1,4 +1,6 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   // mode: 'development', // 'production' にすると圧縮されます
@@ -14,7 +16,8 @@ module.exports = {
         test: /\.css$/, // .js ファイルを対象
         use: [
           {
-            loader: 'style-loader', // CSS を <style> タグに挿入
+            // loader: 'style-loader', // CSS を <style> タグに挿入
+            loader: MiniCssExtractPlugin.loader, // CSS を別ファイルに抽出
           },
           {
             loader: 'css-loader', // CSS をバンドル
@@ -23,5 +26,14 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'style.css', // 出力する CSS ファイル名
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html', // テンプレート HTML ファイル
+      filename: 'index.html', // 出力する HTML ファイル名
+    }),
+  ],
   devtool: 'source-map', // ソースマップを出力（デバッグ用）
 };
