@@ -1,0 +1,17 @@
+{
+  "name": "section03",
+  "version": "1.0.0",
+  "description": "",
+  "license": "UNLICENSED",
+  "author": "ss",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true,
+  "devDependencies": {
+    "webpack": "^4.41.6",
+    "webpack-cli": "^3.3.11"
+  }
+}
