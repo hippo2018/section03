@@ -41,6 +41,23 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.pug/,
+        use: [
+          {
+            loader: 'html-loader', // HTML をバンドル
+            // options: {
+            //   esModule: false, // CommonJS モジュールとして扱う
+            // },
+          },
+          {
+            loader: 'pug-html-loader', // Pug を HTML に変換
+            options: {
+              pretty: true, // インデントを整える
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -48,8 +65,14 @@ module.exports = {
       filename: './stylesheets/main.css', // 出力する CSS ファイル名
     }),
     new HtmlWebpackPlugin({
-      template: './src/templates/index.html', // テンプレート HTML ファイル
+      // template: './src/templates/index.html', // テンプレート HTML ファイル
+      template: './src/templates/index.pug', // Pug テンプレートファイル
       filename: 'index.html', // 出力する HTML ファイル名
+    }),
+    new HtmlWebpackPlugin({
+      // template: './src/templates/index.html', // テンプレート HTML ファイル
+      template: './src/templates/access.pug', // Pug テンプレートファイル
+      filename: 'access.html', // 出力する HTML ファイル名
     }),
     new CleanWebpackPlugin(), // 出力フォルダをクリーンアップ
   ],

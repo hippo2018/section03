@@ -1,0 +1,10 @@
+extends _layout.pug
+
+block locals
+  - var title = 'Hello Pug!';
+
+block content
+  h1 Hello, World!
+  // 修正箇所：imgの直後にスペースなしでカッコを開始
+  img(src="../images/icon.png", alt="icon")
+  img(src="../images/thumbnail.jpg", alt="thumbnail")
