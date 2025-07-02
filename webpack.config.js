@@ -1,14 +1,15 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   // mode: 'development', // 'production' にすると圧縮されます
   mode: 'production', // 'production' にすると圧縮されます
-  entry: './src/index.js', // エントリーファイル
+  entry: './src/javascripts/main.js', // エントリーファイル
   output: {
     path: path.resolve(__dirname, 'dist'), // 出力フォルダ
-    filename: 'main.js', // 出力ファイル名
+    filename: 'javascripts/my.js', // 出力ファイル名
   },
   module: {
     rules: [
@@ -28,12 +29,13 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: 'style.css', // 出力する CSS ファイル名
+      filename: './stylesheets/main.css', // 出力する CSS ファイル名
     }),
     new HtmlWebpackPlugin({
-      template: './src/index.html', // テンプレート HTML ファイル
+      template: './src/templates/index.html', // テンプレート HTML ファイル
       filename: 'index.html', // 出力する HTML ファイル名
     }),
+    new CleanWebpackPlugin(), // 出力フォルダをクリーンアップ
   ],
   devtool: 'source-map', // ソースマップを出力（デバッグ用）
 };
