@@ -5,9 +5,16 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { name } = require('file-loader');
 
 module.exports = {
+    // 追加
+  // devServer: {
+  //   static: path.resolve(__dirname, 'src'),
+  // },
+
   // mode: 'development', // 'production' にすると圧縮されます
   mode: 'production', // 'production' にすると圧縮されます
-  entry: './src/javascripts/main.js', // エントリーファイル
+  entry: {
+    main: './src/javascripts/main.js',
+  }, // エントリーファイル
   output: {
     path: path.resolve(__dirname, 'dist'), // 出力フォルダ
     filename: 'javascripts/my.js', // 出力ファイル名
@@ -73,6 +80,11 @@ module.exports = {
       // template: './src/templates/index.html', // テンプレート HTML ファイル
       template: './src/templates/access.pug', // Pug テンプレートファイル
       filename: 'access.html', // 出力する HTML ファイル名
+    }),
+    new HtmlWebpackPlugin({
+      // template: './src/templates/index.html', // テンプレート HTML ファイル
+      template: './src/templates/members/taro.pug', // Pug テンプレートファイル
+      filename: 'members/taro.html', // 出力する HTML ファイル名
     }),
     new CleanWebpackPlugin(), // 出力フォルダをクリーンアップ
   ],
