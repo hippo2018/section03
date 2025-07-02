@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const { name } = require('file-loader');
 
 module.exports = {
   // mode: 'development', // 'production' にすると圧縮されます
@@ -22,6 +23,21 @@ module.exports = {
           },
           {
             loader: 'css-loader', // CSS をバンドル
+          },
+        ],
+      },
+      {
+        test: /\.(png|jpg)/, // 画像ファイルを対象
+        use: [
+          {
+            // loader: 'url-loader', // 画像を base64 エンコードしてバンドル
+            loader: 'file-loader', // 画像をファイルとして出力
+            options: {
+              esModule: false, // CommonJS モジュールとして扱う
+              // name: 'images/icon.png', // 出力する画像ファイル名
+              // name: 'images/[hash].[ext]', // 出力する画像ファイル名（ハッシュ値を付与）
+              name: 'images/[name].[ext]', // 出力する画像ファイル名（ハッシュ値を付与）
+            },
           },
         ],
       },
