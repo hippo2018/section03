@@ -22,7 +22,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/, // .js ファイルを対象
+        test: /\.(css|sass|scss)$/, // .js ファイルを対象
         use: [
           {
             // loader: 'style-loader', // CSS を <style> タグに挿入
@@ -30,6 +30,9 @@ module.exports = {
           },
           {
             loader: 'css-loader', // CSS をバンドル
+          },
+          {
+            loader: 'sass-loader', // Sass を CSS に変換
           },
         ],
       },
