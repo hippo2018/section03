@@ -1,3 +1,31 @@
-.footer{background-color:#ddd}body{color:#add8e6}.content{margin-right:16px}.content .title,.content .title-sm,.content .title-md,.content .title-lg{font-size:24px;color:orange;display:block;background-color:#000;border:3px solid #ddd;padding:1em;margin-bottom:2em}.content .title-lg{font-size:32px}.content .title-md{font-size:28px}.content .title-sm{font-size:14px}
+.footer {
+  background-color: #ddd;
+}
+
+body {
+  color: lightblue;
+}
+
+.content {
+  margin-right: 16px;
+}
+.content .title, .content .title-sm, .content .title-md, .content .title-lg {
+  font-size: 24px;
+  color: orange;
+  display: block;
+  background-color: #000;
+  border: 3px solid #ddd;
+  padding: 1em;
+  margin-bottom: 2em;
+}
+.content .title-lg {
+  font-size: 32px;
+}
+.content .title-md {
+  font-size: 28px;
+}
+.content .title-sm {
+  font-size: 14px;
+}
 
 /*# sourceMappingURL=main.css.map*/

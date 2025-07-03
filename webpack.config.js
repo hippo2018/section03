@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { name } = require('file-loader');
+const { SourceMap } = require('module');
 
 module.exports = {
     // 追加
@@ -10,8 +11,9 @@ module.exports = {
   //   static: path.resolve(__dirname, 'src'),
   // },
 
-  // mode: 'development', // 'production' にすると圧縮されます
-  mode: 'production', // 'production' にすると圧縮されます
+  mode: 'development', // 'production' にすると圧縮されます
+  // mode: 'production', // 'production' にすると圧縮されます、指定しなくてもデフォルトです
+  devtool: 'source-map', // ソースマップを出力（デバッグ用）表面じょうは見やすくするため
   entry: {
     main: './src/javascripts/main.js',
   }, // エントリーファイル
@@ -22,6 +24,22 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/, // .js ファイルを対象
+        exclude: /node_modules/, // node_modules フォルダは除外
+        use: [
+          {
+            loader: 'babel-loader', // Babel を使用して ES6 を ES5 に変換
+            options: {
+              presets: [
+                // ['@babel/preset-env'], // 最新の JavaScript 機能を変換
+                ['@babel/preset-env', {'targets': '> 0.25%, not dead'}], // 最新の JavaScript 機能を変換
+                // ['@babel/preset-env', {'targets': '> 30%, not dead'}], // 最新の JavaScript 機能を変換
+              ]
+            },
+          },
+        ],
+      },
+      {
         test: /\.(css|sass|scss)$/, // .js ファイルを対象
         use: [
           {
@@ -30,6 +48,10 @@ module.exports = {
           },
           {
             loader: 'css-loader', // CSS をバンドル
+            options: {
+              // sourceMap: true, // ソースマップを有効にする
+              sourceMap: false, // ソースマップを無効にする
+            },
           },
           {
             loader: 'sass-loader', // Sass を CSS に変換
@@ -91,5 +113,4 @@ module.exports = {
     }),
     new CleanWebpackPlugin(), // 出力フォルダをクリーンアップ
   ],
-  devtool: 'source-map', // ソースマップを出力（デバッグ用）
 };
