@@ -2,9 +2,6 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { name } = require('file-loader');
-const { SourceMap } = require('module');
-const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   // 追加
@@ -31,15 +28,6 @@ module.exports = {
           {
             loader: 'ts-loader', // TypeScript を JavaScript に変換
           }
-        ],
-      },
-      {
-        test: /\.vue$/, // .vue ファイルを対象
-        exclude: /node_modules/, // node_modules フォルダは除外
-        use: [
-          {
-            loader: 'vue-loader', // Vue.js のコンポーネントをバンドル
-          },
         ],
       },
       {
@@ -89,6 +77,7 @@ module.exports = {
               // name: 'images/icon.png', // 出力する画像ファイル名
               // name: 'images/[hash].[ext]', // 出力する画像ファイル名（ハッシュ値を付与）
               name: 'images/[name].[ext]', // 出力する画像ファイル名（ハッシュ値を付与）
+              publicPath: '/', // 出力先のパス
             },
           },
           {
@@ -135,7 +124,6 @@ module.exports = {
     ],
   },
   plugins: [
-    new VueLoaderPlugin(), // Vue.js のプラグイン
     new MiniCssExtractPlugin({
       filename: './stylesheets/main.css', // 出力する CSS ファイル名
     }),
