@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { name } = require('file-loader');
 const { SourceMap } = require('module');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
     // 追加
@@ -23,6 +24,15 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.vue$/, // .vue ファイルを対象
+        exclude: /node_modules/, // node_modules フォルダは除外
+        use: [
+          {
+            loader: 'vue-loader', // Vue.js のコンポーネントをバンドル
+          },
+        ],
+      },
       {
         test: /\.(js|jsx)$/, // .js ファイルを対象
         exclude: /node_modules/, // node_modules フォルダは除外
@@ -116,6 +126,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new VueLoaderPlugin(), // Vue.js のプラグイン
     new MiniCssExtractPlugin({
       filename: './stylesheets/main.css', // 出力する CSS ファイル名
     }),
