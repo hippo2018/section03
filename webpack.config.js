@@ -17,7 +17,7 @@ module.exports = {
   }, // エントリーファイル
   output: {
     path: path.resolve(__dirname, 'dist'), // 出力フォルダ
-    filename: 'javascripts/my.js', // 出力ファイル名
+    filename: 'javascripts/[name]-[hash].js', // 出力ファイル名
   },
   module: {
     rules: [
@@ -76,7 +76,7 @@ module.exports = {
               esModule: false, // CommonJS モジュールとして扱う
               // name: 'images/icon.png', // 出力する画像ファイル名
               // name: 'images/[hash].[ext]', // 出力する画像ファイル名（ハッシュ値を付与）
-              name: 'images/[name].[ext]', // 出力する画像ファイル名（ハッシュ値を付与）
+              name: 'images/[name]-[hash].[ext]', // 出力する画像ファイル名（ハッシュ値を付与）
               publicPath: '/', // 出力先のパス
             },
           },
@@ -125,7 +125,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: './stylesheets/main.css', // 出力する CSS ファイル名
+      filename: './stylesheets/[name]-[hash].css', // 出力する CSS ファイル名
     }),
     new HtmlWebpackPlugin({
       // template: './src/templates/index.html', // テンプレート HTML ファイル
