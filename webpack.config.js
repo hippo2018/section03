@@ -59,7 +59,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg)/, // 画像ファイルを対象
+        test: /\.(png|jpg|jpeg)/, // 画像ファイルを対象
         use: [
           {
             // loader: 'url-loader', // 画像を base64 エンコードしてバンドル
@@ -69,6 +69,28 @@ module.exports = {
               // name: 'images/icon.png', // 出力する画像ファイル名
               // name: 'images/[hash].[ext]', // 出力する画像ファイル名（ハッシュ値を付与）
               name: 'images/[name].[ext]', // 出力する画像ファイル名（ハッシュ値を付与）
+            },
+          },
+          {
+            loader: 'image-webpack-loader', // 画像を圧縮
+            options: {
+              mozjpeg: {
+                progressive: true, // JPEG 画像を圧縮
+                quality: 65, // 圧縮率
+              },
+              optipng: {
+                enabled: false, // PNG 画像の圧縮は無効
+              },
+              pngquant: {
+                quality: [0.65, 0.90], // PNG 画像の圧縮率
+                speed: 4, // 圧縮速度
+              },
+              gifsicle: {
+                interlaced: false, // GIF 画像のインターレースを無効
+              },
+              webp: {
+                quality: 75, // WebP 画像の圧縮率
+              },
             },
           },
         ],
