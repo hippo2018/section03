@@ -24,7 +24,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/, // .js ファイルを対象
+        test: /\.(js|jsx)$/, // .js ファイルを対象
         exclude: /node_modules/, // node_modules フォルダは除外
         use: [
           {
@@ -34,6 +34,7 @@ module.exports = {
                 // ['@babel/preset-env'], // 最新の JavaScript 機能を変換
                 ['@babel/preset-env', {'targets': '> 0.25%, not dead'}], // 最新の JavaScript 機能を変換
                 // ['@babel/preset-env', {'targets': '> 30%, not dead'}], // 最新の JavaScript 機能を変換
+                '@babel/preset-react', // React の JSX を変換
               ]
             },
           },
