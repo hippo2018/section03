@@ -7,7 +7,7 @@ const { SourceMap } = require('module');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-    // 追加
+  // 追加
   // devServer: {
   //   static: path.resolve(__dirname, 'src'),
   // },
@@ -24,6 +24,15 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(ts|tsx)$/,
+        exclude: /node_modules/, // node_modules フォルダは除外
+        use: [
+          {
+            loader: 'ts-loader', // TypeScript を JavaScript に変換
+          }
+        ],
+      },
       {
         test: /\.vue$/, // .vue ファイルを対象
         exclude: /node_modules/, // node_modules フォルダは除外
@@ -42,7 +51,7 @@ module.exports = {
             options: {
               presets: [
                 // ['@babel/preset-env'], // 最新の JavaScript 機能を変換
-                ['@babel/preset-env', {'targets': '> 0.25%, not dead'}], // 最新の JavaScript 機能を変換
+                ['@babel/preset-env', { 'targets': '> 0.25%, not dead' }], // 最新の JavaScript 機能を変換
                 // ['@babel/preset-env', {'targets': '> 30%, not dead'}], // 最新の JavaScript 機能を変換
                 '@babel/preset-react', // React の JSX を変換
               ]
